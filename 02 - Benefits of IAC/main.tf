@@ -142,3 +142,14 @@ resource "aws_instance" "web_server" {
     Name = "Ubuntu EC2 Server"
   }
 }
+resource "aws_instance" "web" {
+  ami           = "ami-06b21ccaeff8cd686"
+  instance_type = "t3.micro"
+
+  subnet_id              = "subnet-09e87e3327e3885f4"
+  vpc_security_group_ids = ["sg-0e56e159e75edadca"]
+
+  tags = {
+    "Identity" = "tf_testing_server"
+  }
+}
