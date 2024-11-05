@@ -192,7 +192,7 @@ resource "aws_subnet" "variables-subnet" {
   map_public_ip_on_launch = var.variables_sub_auto_ip
 
   tags = {
-    Name      = "sub-variables-us-east-1a"
+    Name      = "sub-variables-${var.variables_sub_az}"
     Terraform = "true"
   }
 }
