@@ -142,17 +142,6 @@ resource "aws_instance" "web_server" {
     Name = "Ubuntu EC2 Server"
   }
 }
-resource "aws_instance" "web" {
-  ami           = "ami-06b21ccaeff8cd686"
-  instance_type = "t3.micro"
-
-  subnet_id              = "subnet-03cde890a5419b1c5"
-  vpc_security_group_ids = ["sg-09b0c80913dabccd3"]
-
-  tags = {
-    "Identity" = "tf_testing_server"
-  }
-}
 
 # Terraform Resource Block - Build an S
 resource "aws_s3_bucket" "my-new-S3-bucket" {   
@@ -194,4 +183,16 @@ resource "aws_security_group" "my-new-security-group" {
 #Terraform Resource Block - Random String
 resource "random_id" "randomness" {
   byte_length = 16
+}
+
+resource "aws_subnet" "variables-subnet" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "10.0.250.0/24"
+  availability_zone       = "us-east-1a"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name      = "sub-variables-us-east-1a"
+    Terraform = "true"
+  }
 }
