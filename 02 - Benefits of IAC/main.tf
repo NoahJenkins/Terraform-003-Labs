@@ -137,7 +137,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
-  subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
+  subnet_id     = aws_subnet.public_subnets["public_subnet_2"].id
   tags = {
     Name = "Ubuntu EC2 Server"
   }
@@ -146,8 +146,8 @@ resource "aws_instance" "web" {
   ami           = "ami-06b21ccaeff8cd686"
   instance_type = "t3.micro"
 
-  subnet_id              = "subnet-09e87e3327e3885f4"
-  vpc_security_group_ids = ["sg-0e56e159e75edadca"]
+  subnet_id              = "subnet-03cde890a5419b1c5"
+  vpc_security_group_ids = ["sg-09b0c80913dabccd3"]
 
   tags = {
     "Identity" = "tf_testing_server"
@@ -193,5 +193,5 @@ resource "aws_security_group" "my-new-security-group" {
 
 #Terraform Resource Block - Random String
 resource "random_id" "randomness" {
-  byte_length = 24
+  byte_length = 16
 }
