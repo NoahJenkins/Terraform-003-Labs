@@ -9,10 +9,14 @@ data "aws_region" "current" {}
 
 #Locals Blocks#################################################
 locals {
-  team = "api_mgmt_dev"
+  team        = "api_mgmt_dev"
   application = "corp_api"
   server_name = "ec2-${var.environment}-api-${var.variables_sub_az}"
 }
+
+###############################################################
+
+
 
 #Define the VPC
 resource "aws_vpc" "vpc" {
@@ -22,6 +26,7 @@ resource "aws_vpc" "vpc" {
     Name        = var.vpc_name
     Environment = "demo_environment"
     Terraform   = "true"
+    Region      = data.aws_region.current.name
   }
 }
 
@@ -129,7 +134,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 
   filter {
@@ -146,26 +151,26 @@ resource "aws_instance" "web_server" {
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.public_subnets["public_subnet_2"].id
   tags = {
-    Name = local.server_name
+    Name  = local.server_name
     Owner = local.team
-    App = local.application
+    App   = local.application
   }
 }
 
 # Terraform Resource Block - Build an S
-resource "aws_s3_bucket" "my-new-S3-bucket" {   
+resource "aws_s3_bucket" "my-new-S3-bucket" {
   bucket = "my-new-tf-test-bucket-${random_id.randomness.hex}"
 
-  tags = {     
-    Name = "My S3 Bucket"     
-    Purpose = "Intro to Resource Blocks Lab"   
-  } 
+  tags = {
+    Name    = "My S3 Bucket"
+    Purpose = "Intro to Resource Blocks Lab"
+  }
 }
 
-resource "aws_s3_bucket_ownership_controls" "my_new_bucket_acl" {   
-  bucket = aws_s3_bucket.my-new-S3-bucket.id  
-  rule {     
-    object_ownership = "BucketOwnerPreferred"   
+resource "aws_s3_bucket_ownership_controls" "my_new_bucket_acl" {
+  bucket = aws_s3_bucket.my-new-S3-bucket.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
   }
 }
 
