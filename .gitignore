@@ -29,3 +29,4 @@ terraform.rc
 *.auto.tfvars
 *.auto.tfvars.json
 terraform.tfplan
+*.pem
