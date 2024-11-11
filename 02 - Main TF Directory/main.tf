@@ -11,7 +11,7 @@ provider "aws" {
     tags = {
       Owner       = "Noah"
       provisioner = "terraform"
-      environment = "demo"
+      environment = terraform.workspace
     }
   }
 }
