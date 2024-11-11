@@ -7,6 +7,13 @@ Contributors: Bryan and Gabe
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
+  default_tags {
+    tags = {
+      Owner       = "Noah"
+      provisioner = "terraform"
+      environment = "demo"
+    }
+  }
 }
 
 
@@ -330,4 +337,11 @@ resource "aws_security_group" "vpc-ping" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+# 8.3 Importing Existing Resources
+
+resource "aws_instance" "aws_linux" {
+  ami           = "ami-063d43db0594b521b"
+  instance_type = "t2.micro"
 }
