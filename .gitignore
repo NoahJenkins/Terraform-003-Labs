@@ -30,3 +30,6 @@ terraform.rc
 *.auto.tfvars.json
 terraform.tfplan
 *.pem
+
+# Remove log files
+terraform_log.txt
