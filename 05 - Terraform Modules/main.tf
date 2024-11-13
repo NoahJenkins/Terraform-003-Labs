@@ -347,3 +347,7 @@ module "autoscaling" {
   }
 
 }
+
+output "size" {
+  value = module.server.size
+}

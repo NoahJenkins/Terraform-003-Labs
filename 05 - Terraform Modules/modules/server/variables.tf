@@ -1,7 +1,7 @@
 
 variable "ami" {}
 variable "size" {
-  default = "t3.micro"
+  default = "t2.micro"
 }
 variable "subnet_id" {}
 variable "security_groups" {
