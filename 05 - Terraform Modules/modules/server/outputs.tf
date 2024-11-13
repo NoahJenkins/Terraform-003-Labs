@@ -12,3 +12,4 @@ output "size" {
   description = "Size of server built with Server Module"
   value       = aws_instance.web.instance_type
 }
+
