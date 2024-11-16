@@ -31,6 +31,7 @@ terraform.rc
 terraform.tfplan
 *.pem
 .terraform.lock.hcl
+id_rsa.pub
 
 # Remove log files
 terraform_log.txt
