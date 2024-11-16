@@ -1,12 +1,4 @@
 terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "CCP_Prep"
-
-    workspaces {
-      name = "my_aws_app"
-    }
-  }
   required_version = ">= 1.0.0"
   required_providers {
     aws = {
