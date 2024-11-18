@@ -1,12 +1,13 @@
 terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "TF_003_Prep"
+  # Uncoment the below code to use remote backend, after use: terraform validate then terraform init -migrate-state
+  # backend "remote" {
+  #   hostname     = "app.terraform.io"
+  #   organization = "TF_003_Prep"
 
-    workspaces {
-      name = "config_labs"
-    }
-  }
+  #   workspaces {
+  #     name = "config_labs"
+  #   }
+  # }
   required_version = ">= 1.0.0"
   required_providers {
     aws = {

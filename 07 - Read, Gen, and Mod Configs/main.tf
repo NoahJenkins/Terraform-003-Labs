@@ -308,7 +308,26 @@ resource "aws_security_group" "vpc-web" {
 # }
 
 locals {
+
+  team        = "devops_team"
+  application = "Web Application"
+  server_name = "ec2-web-server-${terraform.workspace}"
+}
+
+locals {
   service_name = "Automation"
   app_team     = "Cloud Team"
   createdby    = "terraform"
+}
+
+locals {
+  # Common tags to be assigned to all resources
+  common_tags = {
+    Name      = local.server_name
+    Owner     = local.team
+    App       = local.application
+    Service   = local.service_name
+    AppTeam   = local.app_team
+    CreatedBy = local.createdby
+  }
 }
